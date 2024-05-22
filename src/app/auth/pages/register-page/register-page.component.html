@@ -1,113 +1,124 @@
-<h2>Validaciones Reactivas</h2>
+<h2>Reactive Validations</h2>
 <hr />
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
-      <!-- Nombre -->
+    <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Nombre</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label" for="name">Name</label>
+        <div class="col-sm-9" id="name">
           <input
             type="text"
             class="form-control"
-            placeholder="Nombre del usuario"
+            placeholder="User Name"
+            formControlName="name"
           />
-
-          <span class="form-text text-danger">
-            Debe de ser en formato de nombre y apellido
+          <span class="form-text text-danger" *ngIf="isValidField('name')">
+            It must be in first and last name format
           </span>
         </div>
       </div>
 
       <!-- Email -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Email</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label" for="email">Email</label>
+        <div class="col-sm-9" id="email">
           <input
             type="email"
             class="form-control"
-            placeholder="Email del usuario"
+            placeholder="Email of user"
+            formControlName="email"
           />
-          <span class="form-text text-danger">
-            mensaje de error del email
+          <span class="form-text text-danger" *ngIf="isValidField('email')">
+            Message error of email
           </span>
         </div>
       </div>
 
       <!-- Username -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Username</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label" for="username">Username</label>
+        <div class="col-sm-9" id="username">
           <input
             type="text"
             class="form-control"
-            placeholder="Nombre código del usuario"
+            placeholder="User code name"
+            formControlName="username"
           />
-          <span class="form-text text-danger">
-            El username no puede ser Strider
+          <span class="form-text text-danger" *ngIf="isValidField('username')">
+            The username cannot be Strider
           </span>
         </div>
       </div>
 
       <!-- Password -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Password</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label" for="password">Password</label>
+        <div class="col-sm-9" id="password">
           <input
             type="password"
             class="form-control"
-            placeholder="Password de su cuenta"
+            placeholder="Account password"
+            formControlName="password"
           />
 
-          <span class="form-text text-danger">
-            La contraseña debe de ser mayor de 6 caracteres.
+          <span class="form-text text-danger" *ngIf="isValidField('password')">
+            The password must be greater than 6 characters.
           </span>
         </div>
       </div>
 
-      <!-- Password2 -->
+      <!-- Confirm Password -->
       <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Confirmar</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-form-label" for="confirmPassword"
+          >Confirm Password</label
+        >
+        <div class="col-sm-9" id="confirmPassword">
           <input
             type="password"
             class="form-control"
-            placeholder="Confirmar la contraseña"
+            placeholder="Confirm password"
+            formControlName="confirmPassword"
           />
 
-          <span class="form-text text-danger">
-            Las contraseñas deben de ser iguales
+          <span
+            class="form-text text-danger"
+            *ngIf="isValidField('confirmPassword')"
+          >
+            Passwords must be the same
           </span>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end" type="submit">Crear</button>
+          <button class="btn btn-primary float-end" type="submit">
+            Create
+          </button>
         </div>
       </div>
     </form>
   </div>
 </div>
 
-<h2>Form Valid:</h2>
-<h2>Form Status:</h2>
-<h2>Form Pending:</h2>
+<h2>Form Valid: {{ registerForm.valid }}</h2>
+<h2>Form Status: {{ registerForm.status }}</h2>
+<h2>Form Pending: {{ registerForm.pending }}</h2>
 <h2>Form errors</h2>
-<pre>{{ "formulario" | json }}</pre>
+<pre>{{ registerForm.errors | json }}</pre>
 
-<h5>Nombre</h5>
-<pre>{{ "formulario" | json }}</pre>
+<h5>Name</h5>
+<pre>{{ registerForm.controls["name"].errors | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ "formulario" | json }}</pre>
+<pre>{{ registerForm.controls["email"].errors | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ "formulario" | json }}</pre>
+<pre>{{ registerForm.controls["username"].errors | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ "formulario" | json }}</pre>
+<pre>{{ registerForm.controls["password"].errors | json }}</pre>
 
-<h5>Confirmar</h5>
-<pre>{{ "formulario" | json }}</pre>
+<h5>Confirm Password</h5>
+<pre>{{ registerForm.controls["confirmPassword"].errors | json }}</pre>
