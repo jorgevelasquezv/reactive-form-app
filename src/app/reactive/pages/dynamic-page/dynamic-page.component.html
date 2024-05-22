@@ -4,9 +4,10 @@
 <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <!-- Nombre -->
   <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Name</label>
+    <label class="col-sm-3 col-form-label" for="name">Name</label>
     <div class="col-sm-9">
       <input
+        id="name"
         class="form-control"
         placeholder="Person Name"
         formControlName="name"
@@ -19,10 +20,11 @@
 
   <!-- Agregar Favorito -->
   <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Add</label>
+    <label class="col-sm-3 col-form-label" for="addFavorite">Add</label>
     <div class="col-sm-9">
       <div class="input-group">
         <input
+          id="addFavorite"
           class="form-control"
           placeholder="Add favorites"
           formControlName="newFavoriteGame"
@@ -41,7 +43,7 @@
 
   <!-- Lista de Juegos Favoritos -->
   <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Favorites</label>
+    <label class="col-sm-3 col-form-label" for="favorites">Favorites</label>
     <div class="col-sm-9" formArrayName="favoriteGames">
       <div
         class="mb-1"
@@ -70,9 +72,12 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <button type="submit" class="btn btn-primary float-end">
-        <!-- [disabled]="myForm.invalid" -->
-        Guardar
+      <button
+        type="submit"
+        class="btn btn-primary float-end"
+        [disabled]="myForm.invalid"
+      >
+        Save
       </button>
     </div>
   </div>
